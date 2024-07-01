@@ -6,8 +6,17 @@ import bookmark from '../assets/bookmark.png';
 import bell from '../assets/bell.png' 
 import cart from '../assets/cart.png'
 import menu from '../assets/menu.png'
+import Sidebar from './Sidebar';
+import { useState } from 'react';
 
 const Navbar = () => {
+
+  const [sidebar, setSidebar] = useState(false);
+  const handleClick = () =>
+  {
+    setSidebar(!sidebar);
+  }  
+
   return (
     <div className='flex justify-between items-center mt-[10px]  pb-4 shadow-md '>      
       <img className='w-[293.26px] h-[60px] xl:ml-[97px] ml-[22px]' src= {logo} />
@@ -48,10 +57,14 @@ const Navbar = () => {
           <img src= {cart} />
         </button>
         <button className='p-2 hidden xl:inline text-purple-800 w-[112px] h-[40px] border-2 rounded-lg border-purple-800'>Sign In</button>
-        <button>
-          <img src= {menu} />
+        <button className={`${sidebar ? "hidden": "inline"} "sm:hidden"`} onClick={handleClick}>
+          <img className='xl:hidden' src= {menu} />
         </button>
+        <button onClick={handleClick} className={`${!sidebar ? "hidden": "inline"}`}>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        </button>        
       </div>
+      {sidebar ? <Sidebar/> : null}
     </div>
   )
 }
