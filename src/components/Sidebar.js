@@ -3,7 +3,7 @@ import React from 'react'
 const Sidebar = () => {
 
 	return (
-		<div className='bottom-0 right-0'>
+		<div className='xl:hidden absolute top-20 right-0'>
 			<select>
 				<option>Sign In</option>
 				<option>Join In</option>
